@@ -1,6 +1,6 @@
 import pandas as pd
 
-def deg_file_to_dict_and_list(path: str, delimiter: str, abs_log2_thresh: float, padj_thresh: float) -> dict:
+def deg_file_to_dict(path: str, delimiter: str, abs_log2_thresh: float, padj_thresh: float) -> dict:
     """
     Function Requirements: DESeq2 outputs as tsv
     Note: Says specified to handle Vasculitis project, ask for unspeced version

@@ -35,16 +35,21 @@ def gene_dict_to_output(deg_dict: dict, output_path: str):
         for gene, value in deg_dict.items(): #key = gene name, value = [log2fc, padj]
             f.write(f"{gene}\t{value[0]}\t{value[1]}\n")
 
-def gene_file_to_gene_dict_and_list(input_file: str, delimiter: str, focus_column: str) -> tuple(list, dict):
+def gene_file_to_gene_dict_and_list(input_file: str, delimiter: str, focus_column: str) -> (list, dict):
 	
     input_df = pd.read_csv(input_file, sep = delimiter, header=0, dtype=str)
-    
-    gene_list = list(input_df[focus_column])
-    gene_dict = {}
 
-    for _, row in input_df.iterrows():
-        gene_dict[row['gene']] = row['log2fc']
+    gene_list = list(input_df[focus_column])
+    gene_dict = {row['gene']: row['log2fc'] for _, row in input_df.iterrows}
 
     return gene_list, gene_dict
+
+def gene_file_to_gene_list(input_file: str, delimiter: str, focus_column:str):
+
+    input_df = pd.read_csv(input_file, sep=delimiter, header=None, dtype=str)
+    gene_list = input_df[focus_column].to_list()
+
+    return gene_list
+
 
 

@@ -1,1 +1,1 @@
-python3 ../../src/main/network_handling.py
+python.exe ../../src/main/network_handling.py
